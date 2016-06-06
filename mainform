@@ -1,0 +1,96 @@
+Public cn As ADODB.Connection
+
+Private Sub cmdRun_Click()
+FolderPath = txtdir.Text
+If Right(FolderPath, 1) = "/" Or Right(FolderPath, 1) = "\" Then
+    FolderPath = Mid(FolderPath, 1, Len(FolderPath) - 1)
+End If
+
+Dim rs_folder As ADODB.Recordset
+Set rs_folder = New ADODB.Recordset
+rs_folder.Source = "SELECT area_name FROM V_LRCBOOKS group by area_name"
+rs_folder.ActiveConnection = cn
+rs_folder.LockType = adLockOptimistic
+rs_folder.CursorType = adOpenDynamic
+rs_folder.CursorLocation = adUseClient
+rs_folder.Open
+
+Dim rs_file As ADODB.Recordset
+Dim iFileNo As Integer
+Dim filename As String
+Dim separator As String
+
+separator = txtseparator.Text
+
+Do While Not rs_folder.EOF
+'create a folder
+    If IsNull(rs_folder.Fields(0)) Then
+        FolderName = "Null"
+    Else
+        FolderName = LoaidauTV.Loaidau_Unicode(rs_folder.Fields(0))
+    End If
+    FolderName = Replace(FolderName, "<", "")
+    FolderName = Replace(FolderName, ">", "")
+    FolderName = Replace(FolderName, "/", "")
+    FolderName = Replace(FolderName, "\", "")
+    FolderName = Replace(FolderName, ":", "")
+    FolderName = Replace(FolderName, "?", "")
+    FolderName = Replace(FolderName, "*", "")
+    FolderName = Replace(FolderName, "|", "")
+    FolderName = Replace(FolderName, "<", """")
+    
+    strFolderPath = FolderPath & "\" & FolderName
+    
+    'If Dir(strFolderPath, vbDirectory) = "" Then
+        'create new directory
+        MkDir strFolderPath
+        
+        Set rs_file = New ADODB.Recordset
+        If IsNull(rs_folder.Fields(0)) Then
+            rs_file.Source = "SELECT material_id, V_LRCBOOKS.NHANDE_CHINH, V_LRCBOOKS.NHANDE_PHU, V_LRCBOOKS.TOMTAT, V_LRCBOOKS.KEYWORDS FROM V_LRCBOOKS where area_name is Null"
+        Else
+            rs_file.Source = "SELECT material_id, V_LRCBOOKS.NHANDE_CHINH, V_LRCBOOKS.NHANDE_PHU, V_LRCBOOKS.TOMTAT, V_LRCBOOKS.KEYWORDS FROM V_LRCBOOKS where area_name='" & rs_folder.Fields(0) & "'"
+        End If
+        rs_file.ActiveConnection = cn
+        rs_file.LockType = adLockOptimistic
+        rs_file.CursorType = adOpenDynamic
+        rs_file.CursorLocation = adUseClient
+        rs_file.Open
+        
+        Do While Not rs_file.EOF
+            filename = strFolderPath & "\" & rs_file.Fields(0) & ".txt"
+            'create new text file
+            'iFileNo = FreeFile
+            'open the file for writing
+            'Open filename For Output As #iFileNo
+            'please note, if this file already exists it will be overwritten!
+            'write some example text to the file
+            'Print #iFileNo, rs_file.Fields(1)
+            'close the file (if you dont do this, you wont be able to open it again!)
+            'Close #iFileNo
+            Call createTextFile(rs_file.Fields(1) & separator & rs_file.Fields(2) & separator & rs_file.Fields(3) & separator & rs_file.Fields(4), filename)
+            'Next record
+            rs_file.MoveNext
+        Loop
+    'End If
+    
+    rs_folder.MoveNext
+Loop
+
+MsgBox "Ket thuc!"
+End Sub
+
+Private Sub Form_Load()
+Call Connect(cn)
+txtdir.Text = App.Path & "\extracted"
+End Sub
+
+Public Sub createTextFile(ByVal content As String, ByVal sFileName As String)
+Dim fsT As Object
+Set fsT = CreateObject("ADODB.Stream")
+fsT.Type = 2 'Specify stream type - we want To save text/string data.
+fsT.Charset = "utf-8" 'Specify charset For the source text data.
+fsT.Open 'Open the stream And write binary data To the object
+fsT.WriteText content
+fsT.SaveToFile sFileName, 2 'Save binary data To disk
+End Sub
