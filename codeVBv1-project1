@@ -1,0 +1,254 @@
+Public Function Loaidau_Unicode(ByVal str_uni As String) As String
+Dim str_nosign As String, ascii_uni As Integer, ascii_nosign As Integer
+
+str_nosign = ""
+For i = 1 To Len(str_uni)
+    ascii_uni = AscW(Mid(str_uni, i, 1))
+    ascii_nosign = LoaidauTV.ascii_unicode_nosign(ascii_uni)
+    
+    If (ascii_nosign = 0) Then
+        str_nosign = str_nosign & ChrW(ascii_uni)
+    Else
+        str_nosign = str_nosign & ChrW(ascii_nosign)
+    End If
+Next
+Loaidau_Unicode = str_nosign
+End Function
+Public Function Loaidau_TCVN3(ByVal str_uni As String) As String
+Dim str_nosign As String, ascii_uni As Integer, ascii_nosign As Integer
+
+str_nosign = ""
+For i = 1 To Len(str_uni)
+    ascii_uni = AscW(Mid(str_uni, i, 1))
+    ascii_nosign = LoaidauTV.ascii_tcvn3_nosign(ascii_uni)
+    
+    If (ascii_nosign = 0) Then
+        str_nosign = str_nosign & ChrW(ascii_uni)
+    Else
+        str_nosign = str_nosign & ChrW(ascii_nosign)
+    End If
+Next
+Loaidau_TCVN3 = str_nosign
+End Function
+
+Public Function ascii_unicode_tcvn3(ByVal uni_ascii As Integer) As Integer
+Select Case uni_ascii
+Case 225: ascii_unicode_tcvn3 = 184
+Case 224: ascii_unicode_tcvn3 = 181
+Case 7843: ascii_unicode_tcvn3 = 182
+Case 227: ascii_unicode_tcvn3 = 183
+Case 7841: ascii_unicode_tcvn3 = 185
+Case 259: ascii_unicode_tcvn3 = 168
+Case 7855: ascii_unicode_tcvn3 = 190
+Case 7857: ascii_unicode_tcvn3 = 187
+Case 7859: ascii_unicode_tcvn3 = 188
+Case 7861: ascii_unicode_tcvn3 = 189
+Case 7863: ascii_unicode_tcvn3 = 198
+Case 226: ascii_unicode_tcvn3 = 169
+Case 7845: ascii_unicode_tcvn3 = 202
+Case 7847: ascii_unicode_tcvn3 = 199
+Case 7849: ascii_unicode_tcvn3 = 200
+Case 7851: ascii_unicode_tcvn3 = 201
+Case 7853: ascii_unicode_tcvn3 = 203
+Case 233: ascii_unicode_tcvn3 = 208
+Case 232: ascii_unicode_tcvn3 = 204
+Case 7867: ascii_unicode_tcvn3 = 206
+Case 7869: ascii_unicode_tcvn3 = 207
+Case 7865: ascii_unicode_tcvn3 = 209
+Case 234: ascii_unicode_tcvn3 = 170
+Case 7871: ascii_unicode_tcvn3 = 213
+Case 7873: ascii_unicode_tcvn3 = 210
+Case 7875: ascii_unicode_tcvn3 = 211
+Case 7877: ascii_unicode_tcvn3 = 212
+Case 7879: ascii_unicode_tcvn3 = 214
+Case 237: ascii_unicode_tcvn3 = 221
+Case 236: ascii_unicode_tcvn3 = 215
+Case 7881: ascii_unicode_tcvn3 = 216
+Case 297: ascii_unicode_tcvn3 = 220
+Case 7883: ascii_unicode_tcvn3 = 222
+Case 243: ascii_unicode_tcvn3 = 227
+Case 242: ascii_unicode_tcvn3 = 223
+Case 7887: ascii_unicode_tcvn3 = 225
+Case 245: ascii_unicode_tcvn3 = 226
+Case 7885: ascii_unicode_tcvn3 = 228
+Case 244: ascii_unicode_tcvn3 = 171
+Case 7889: ascii_unicode_tcvn3 = 232
+Case 7891: ascii_unicode_tcvn3 = 229
+Case 7893: ascii_unicode_tcvn3 = 230
+Case 7895: ascii_unicode_tcvn3 = 231
+Case 7897: ascii_unicode_tcvn3 = 233
+Case 417: ascii_unicode_tcvn3 = 172
+Case 7899: ascii_unicode_tcvn3 = 237
+Case 7901: ascii_unicode_tcvn3 = 234
+Case 7903: ascii_unicode_tcvn3 = 235
+Case 7905: ascii_unicode_tcvn3 = 236
+Case 7907: ascii_unicode_tcvn3 = 238
+Case 250: ascii_unicode_tcvn3 = 243
+Case 249: ascii_unicode_tcvn3 = 239
+Case 7911: ascii_unicode_tcvn3 = 241
+Case 361: ascii_unicode_tcvn3 = 242
+Case 7909: ascii_unicode_tcvn3 = 244
+Case 432: ascii_unicode_tcvn3 = 173
+Case 7913: ascii_unicode_tcvn3 = 248
+Case 7915: ascii_unicode_tcvn3 = 245
+Case 7917: ascii_unicode_tcvn3 = 246
+Case 7919: ascii_unicode_tcvn3 = 247
+Case 7921: ascii_unicode_tcvn3 = 249
+Case 253: ascii_unicode_tcvn3 = 253
+Case 7923: ascii_unicode_tcvn3 = 250
+Case 7927: ascii_unicode_tcvn3 = 251
+Case 7929: ascii_unicode_tcvn3 = 252
+Case 7925: ascii_unicode_tcvn3 = 254
+Case 273: ascii_unicode_tcvn3 = 174
+Case 193: ascii_unicode_tcvn3 = 184
+Case 192: ascii_unicode_tcvn3 = 181
+Case 7842: ascii_unicode_tcvn3 = 182
+Case 195: ascii_unicode_tcvn3 = 183
+Case 7840: ascii_unicode_tcvn3 = 185
+Case 258: ascii_unicode_tcvn3 = 161
+Case 7854: ascii_unicode_tcvn3 = 190
+Case 7856: ascii_unicode_tcvn3 = 187
+Case 7858: ascii_unicode_tcvn3 = 188
+Case 7860: ascii_unicode_tcvn3 = 189
+Case 7862: ascii_unicode_tcvn3 = 198
+Case 194: ascii_unicode_tcvn3 = 162
+Case 7844: ascii_unicode_tcvn3 = 202
+Case 7846: ascii_unicode_tcvn3 = 199
+Case 7848: ascii_unicode_tcvn3 = 200
+Case 7850: ascii_unicode_tcvn3 = 201
+Case 7852: ascii_unicode_tcvn3 = 203
+Case 201: ascii_unicode_tcvn3 = 208
+Case 200: ascii_unicode_tcvn3 = 204
+Case 7866: ascii_unicode_tcvn3 = 206
+Case 7868: ascii_unicode_tcvn3 = 207
+Case 7864: ascii_unicode_tcvn3 = 209
+Case 202: ascii_unicode_tcvn3 = 163
+Case 7870: ascii_unicode_tcvn3 = 213
+Case 7872: ascii_unicode_tcvn3 = 210
+Case 7874: ascii_unicode_tcvn3 = 211
+Case 7876: ascii_unicode_tcvn3 = 212
+Case 7878: ascii_unicode_tcvn3 = 214
+Case 205: ascii_unicode_tcvn3 = 221
+Case 204: ascii_unicode_tcvn3 = 215
+Case 7880: ascii_unicode_tcvn3 = 216
+Case 296: ascii_unicode_tcvn3 = 220
+Case 7882: ascii_unicode_tcvn3 = 222
+Case 211: ascii_unicode_tcvn3 = 227
+Case 210: ascii_unicode_tcvn3 = 223
+Case 7886: ascii_unicode_tcvn3 = 225
+Case 213: ascii_unicode_tcvn3 = 226
+Case 7884: ascii_unicode_tcvn3 = 228
+Case 212: ascii_unicode_tcvn3 = 164
+Case 7888: ascii_unicode_tcvn3 = 232
+Case 7890: ascii_unicode_tcvn3 = 229
+Case 7892: ascii_unicode_tcvn3 = 230
+Case 7894: ascii_unicode_tcvn3 = 231
+Case 7896: ascii_unicode_tcvn3 = 233
+Case 416: ascii_unicode_tcvn3 = 165
+Case 7898: ascii_unicode_tcvn3 = 237
+Case 7900: ascii_unicode_tcvn3 = 234
+Case 7902: ascii_unicode_tcvn3 = 235
+Case 7904: ascii_unicode_tcvn3 = 236
+Case 7906: ascii_unicode_tcvn3 = 238
+Case 218: ascii_unicode_tcvn3 = 243
+Case 217: ascii_unicode_tcvn3 = 239
+Case 7910: ascii_unicode_tcvn3 = 241
+Case 360: ascii_unicode_tcvn3 = 242
+Case 7908: ascii_unicode_tcvn3 = 244
+Case 431: ascii_unicode_tcvn3 = 166
+Case 7912: ascii_unicode_tcvn3 = 248
+Case 7914: ascii_unicode_tcvn3 = 245
+Case 7916: ascii_unicode_tcvn3 = 246
+Case 7918: ascii_unicode_tcvn3 = 247
+Case 7920: ascii_unicode_tcvn3 = 249
+Case 221: ascii_unicode_tcvn3 = 253
+Case 7922: ascii_unicode_tcvn3 = 250
+Case 7926: ascii_unicode_tcvn3 = 251
+Case 7928: ascii_unicode_tcvn3 = 252
+Case 7924: ascii_unicode_tcvn3 = 254
+Case 272: ascii_unicode_tcvn3 = 167
+End Select
+End Function
+
+Public Function ascii_unicode_nosign(ByVal uni_ascii As Integer) As Integer
+Select Case uni_ascii
+Case 225, 224, 7843, 227, 7841, 259, 7855, 7857, 7859, 7861, 7863
+    ascii_unicode_nosign = 97 'a
+Case 226, 7845, 7847, 7849, 7851, 7853
+    ascii_unicode_nosign = 97 'a
+Case 233, 232, 7867, 7869, 7865, 234, 7871, 7873, 7875, 7877, 7879
+    ascii_unicode_nosign = 101 'e
+Case 237, 236, 7881, 297, 7883
+    ascii_unicode_nosign = 105 'i
+Case 243, 242, 7887, 245, 7885, 244, 7889, 7891, 7893, 7895, 7897
+    ascii_unicode_nosign = 111 'o
+Case 417, 7899, 7901, 7903, 7905, 7907
+    ascii_unicode_nosign = 111 'o
+Case 250, 249, 7911, 361, 7909, 432, 7913, 7915, 7917, 7919, 7921
+    ascii_unicode_nosign = 117 'u
+Case 253, 7923, 7927, 7929, 7925
+    ascii_unicode_nosign = 121 'y
+Case 273
+    ascii_unicode_nosign = 100 'd
+Case 193, 192, 7842, 195, 7840, 258, 7854, 7856, 7858, 7860, 7862, 194, 7844, 7846, 7848, 7850, 7852
+    ascii_unicode_nosign = 65 'A
+Case 201, 200, 7866, 7868, 7864, 202, 7870, 7872, 7874, 7876, 7878
+    ascii_unicode_nosign = 69 'E
+Case 205, 204, 7880, 296, 7882
+    ascii_unicode_nosign = 73 'I
+Case 211, 210, 7886, 213, 7884, 212, 7888, 7890, 7892, 7894, 7896, 416, 7898, 7900, 7902, 7904, 7906
+    ascii_unicode_nosign = 79 'O
+Case 218, 217, 7910, 360, 7908, 431, 7912, 7914, 7916, 7918, 7920
+    ascii_unicode_nosign = 85 'U
+Case 221, 7922, 7926, 7928, 7924
+    ascii_unicode_nosign = 89 'Y
+Case 272
+    ascii_unicode_nosign = 68 'D
+
+End Select
+End Function
+Public Function ascii_tcvn3_nosign(ByVal uni_ascii As Integer) As Integer
+Select Case uni_ascii
+Case 97, 184, 181, 13, 183, 185, 168, 190, 187, 188, 189, 198, 169, 202, 199, 200, 201, 203
+    ascii_tcvn3_nosign = 97 'a
+Case 208, 204, 206, 207, 209, 170, 213, 210, 211, 212, 214
+    ascii_tcvn3_nosign = 101 'e
+Case 221, 215, 216, 220, 222
+    ascii_tcvn3_nosign = 105 'i
+Case 111, 227, 223, 225, 226, 228, 171, 232, 229, 230, 231, 233, 172, 237, 234, 235, 236, 238
+    ascii_tcvn3_nosign = 111 'o
+Case 243, 239, 241, 242, 244, 173, 248, 245, 246, 247, 249
+    ascii_tcvn3_nosign = 117 'u
+Case 121, 253, 250, 251, 252, 254
+    ascii_tcvn3_nosign = 121 'y
+Case 174
+    ascii_tcvn3_nosign = 100 'd
+Case 161, 162
+    ascii_tcvn3_nosign = 65 'A
+Case 163
+    ascii_tcvn3_nosign = 69 'E
+Case 164, 165
+    ascii_tcvn3_nosign = 79 'O
+Case 166
+    ascii_tcvn3_nosign = 85 'U
+Case 167
+    ascii_tcvn3_nosign = 68 'D
+
+End Select
+End Function
+
+Public Function convert_unicode_tcvn3(ByVal str_uni As String) As String
+Dim str_tcvn As String, ascii_uni As Integer, ascii_tcvn As Integer
+
+str_tcvn = ""
+For i = 1 To Len(str_uni)
+    ascii_uni = AscW(Mid(str_uni, i, 1))
+    ascii_tcvn = LoaidauTV.ascii_unicode_tcvn3(ascii_uni)
+    If (ascii_tcvn = 0) Then
+        str_tcvn = str_tcvn & ChrW(ascii_uni)
+    Else
+        str_tcvn = str_tcvn & ChrW(ascii_tcvn)
+    End If
+Next
+convert_unicode_tcvn3 = str_tcvn
+End Function
